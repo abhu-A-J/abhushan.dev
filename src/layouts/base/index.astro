@@ -1,4 +1,6 @@
 ---
+import Footer from '@layouts/footer/index.astro';
+
 type Props = {
 	title: string;
 	description: string;
@@ -54,12 +56,14 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		<meta property="twitter:image" content={ogImage} />
 	</head>
 	<body
-		class="bg-gray-1 w-full pb-[var(--body-space-bottom)] pl-[var(--body-space-left)] pr-[var(--body-space-right)] antialiased"
+		class="w-full min-h-full bg-gray-1 pb-[var(--body-space-bottom)] pl-[var(--body-space-left)] pr-[var(--body-space-right)] antialiased"
 	>
 		<div data-name="blur-segment" aria-hidden="true" class="h-[var(--blur-segment-height)]"></div>
 		<slot>
 			<p>This is fallback content for slots, please pass something as children into the layout</p>
 		</slot>
+
+		<Footer />
 	</body>
 
 	<style is:global>
@@ -69,7 +73,9 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 			--body-space-bottom: env(safe-area-inset-bottom);
 			--primary-content-width: 672px;
 			--blur-segment-height: 60px;
-			--footer-height: 50px;
+			--footer-height: 52px;
+			--scrollbar-size: 16px;
+			--scrollbar-color: var(--colors-gray-7);
 
 			--colors-gray-1: #fcfcfc;
 			--colors-gray-2: #f9f9f9;
@@ -114,6 +120,47 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		li,
 		caption {
 			color: var(--colors-gray-11);
+		}
+
+		* {
+			scrollbar-width: thin;
+			scrollbar-color: var(--scrollbar-color) transparent;
+		}
+
+		/* width */
+		::-webkit-scrollbar {
+			width: var(--scrollbar-size);
+			height: var(--scrollbar-size);
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background: var(--scrollbar-color);
+			border-radius: var(--scrollbar-size);
+			border: 5px solid transparent;
+			background-clip: padding-box;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			--scrollbar-color: var(--colors-gray-8);
+		}
+
+		/* Handle on active */
+		::-webkit-scrollbar-thumb:active {
+			--scrollbar-color: var(--colors-gray-9);
+		}
+
+		/* Hide the rest */
+		::-webkit-scrollbar-button,
+		::-webkit-scrollbar-corner,
+		::-webkit-resizer {
+			display: none;
 		}
 	</style>
 </html>
