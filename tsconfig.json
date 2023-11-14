@@ -1,3 +1,15 @@
 {
-  "extends": "astro/tsconfigs/strictest"
+	"extends": "astro/tsconfigs/strictest",
+	"compilerOptions": {
+		"verbatimModuleSyntax": true,
+		"baseUrl": "/Users/abhushanalippo/Desktop/abhushan.dev",
+		"paths": {
+			"@components/*": ["src/components/*"],
+			"@layouts/*": ["src/layouts/*"],
+			"@schema/*": ["src/schema/*"],
+			"@utils/*": ["src/utils/*"]
+		},
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
+	}
 }
