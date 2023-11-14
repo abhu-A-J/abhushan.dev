@@ -56,9 +56,9 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		<meta property="twitter:image" content={ogImage} />
 	</head>
 	<body
-		class="pointer-events-none min-h-full w-full select-none bg-gray-1 pb-[var(--body-space-bottom)] pl-[var(--body-space-left)] pr-[var(--body-space-right)] antialiased"
+		class="min-h-full w-full bg-gray-1 pb-[var(--body-space-bottom)] pl-[var(--body-space-left)] pr-[var(--body-space-right)] antialiased"
 	>
-		<div data-name="blur-segment" aria-hidden="true"></div>
+		<div data-name="blur-segment" aria-hidden="true" class="pointer-events-none select-none"></div>
 		<slot>
 			<p>This is fallback content for slots, please pass something as children into the layout</p>
 		</slot>
