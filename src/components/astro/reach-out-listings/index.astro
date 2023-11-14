@@ -1,0 +1,34 @@
+---
+import ExternalLink from '@components/react/link/external.tsx';
+const reachMeSocials = [
+	{
+		name: 'twitter',
+		link: 'https://twitter.com/abhushanAJ',
+		title: 'Connect with Abhushan on X (Formerly Twitter)'
+	},
+	{
+		name: 'linkedin',
+		link: 'https://www.linkedin.com/in/abhushanaj/',
+		title: 'Connect with Abhushan on LinkedIn'
+	},
+	{
+		name: 'email',
+		link: 'mailto:abhushanadhikarijoshi@gmail.com?body=Hello Abhushan, I am reaching out for ..',
+		title: 'Connect with Abhushan over email at abhushanadhikarijoshi@gmail.com'
+	}
+];
+---
+
+<nav data-name="reach-out-listings">
+	<ul class="flex gap-4">
+		{
+			reachMeSocials.map((social) => (
+				<li>
+					<ExternalLink href={social.link} title={social.title}>
+						{social.name}
+					</ExternalLink>
+				</li>
+			))
+		}
+	</ul>
+</nav>

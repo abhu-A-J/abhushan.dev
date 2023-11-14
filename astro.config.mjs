@@ -8,5 +8,6 @@ export default defineConfig({
 	integrations: [tailwind(), react()],
 	server: {
 		port: 3000
-	}
+	},
+	site: 'https://abhushan.dev'
 });
