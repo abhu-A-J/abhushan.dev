@@ -56,9 +56,9 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		<meta property="twitter:image" content={ogImage} />
 	</head>
 	<body
-		class="w-full min-h-full bg-gray-1 pb-[var(--body-space-bottom)] pl-[var(--body-space-left)] pr-[var(--body-space-right)] antialiased"
+		class="pointer-events-none min-h-full w-full select-none bg-gray-1 pb-[var(--body-space-bottom)] pl-[var(--body-space-left)] pr-[var(--body-space-right)] antialiased"
 	>
-		<div data-name="blur-segment" aria-hidden="true" class="h-[var(--blur-segment-height)]"></div>
+		<div data-name="blur-segment" aria-hidden="true"></div>
 		<slot>
 			<p>This is fallback content for slots, please pass something as children into the layout</p>
 		</slot>
@@ -120,6 +120,20 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		li,
 		caption {
 			color: var(--colors-gray-11);
+		}
+
+		div[data-name='blur-segment'] {
+			width: calc(100% + var(--body-space-left) + var(--body-space-right));
+			margin-left: calc(-1 * var(--body-space-left));
+			--gradient-blur: linear-gradient(to bottom, var(--colors-gray-1), transparent);
+			mask-image: var(--gradient-blur);
+			background-image: var(--gradient-blur);
+			opacity: 0.95;
+			position: sticky;
+			top: 0;
+			z-index: 1;
+			height: var(--blur-segment-height);
+			backdrop-filter: blur(12px);
 		}
 
 		* {
