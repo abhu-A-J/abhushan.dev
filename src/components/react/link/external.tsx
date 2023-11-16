@@ -6,7 +6,7 @@ type Props = ComponentProps<typeof InternalLink>;
 
 function ExternalLink({ children, href, ...otherProps }: Props) {
 	return (
-		<InternalLink href={href} {...otherProps}>
+		<InternalLink href={href} target="_blank" {...otherProps}>
 			<svg
 				className="-mb-[2px] stroke-current"
 				width="18"
