@@ -1,5 +1,5 @@
 ---
-import Footer from '@layouts/footer/index.astro';
+import Footer from '@components/astro/footer/index.astro';
 
 type Props = {
 	title: string;
@@ -68,15 +68,21 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 
 	<style is:global>
 		:root {
+			/* Layout Essentials */
 			--body-space-left: max(20px, env(safe-area-inset-left));
 			--body-space-right: max(20px, env(safe-area-inset-right));
 			--body-space-bottom: env(safe-area-inset-bottom);
+			--page-top: 64px;
+			--page-height: 100vh;
 			--primary-content-width: 672px;
 			--blur-segment-height: 60px;
 			--footer-height: 52px;
+
+			/* Scrollbar overrides */
 			--scrollbar-size: 16px;
 			--scrollbar-color: var(--colors-gray-7);
 
+			/* Colors */
 			--colors-gray-1: #fcfcfc;
 			--colors-gray-2: #f9f9f9;
 			--colors-gray-3: #f0f0f0;
@@ -94,7 +100,7 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		main {
 			max-width: var(--page-width, 1230px);
 			margin: 0 auto;
-			min-height: calc(var(--page-height, 100vh) - var(--footer-height));
+			min-height: calc(var(--page-height) - var(--footer-height) - var(--blur-segment-height));
 		}
 
 		[data-name='text-lc'] {

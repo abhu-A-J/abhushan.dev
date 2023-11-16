@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/base/index.astro';
 import ReachOutListings from '@components/astro/reach-out-listings/index.astro';
+import Navbar from '@components/astro/navbar/index.astro';
 ---
 
 <BaseLayout
@@ -12,6 +13,7 @@ import ReachOutListings from '@components/astro/reach-out-listings/index.astro';
 	robots="index, follow"
 >
 	<main>
+		<Navbar />
 		<article class="flex w-full md:grid md:grid-cols-[1fr_var(--primary-content-width)_1fr]">
 			<!-- About me section -->
 			<section class="mb-8 md:col-start-2 md:col-end-3">
