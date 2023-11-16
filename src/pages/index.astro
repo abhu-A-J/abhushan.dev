@@ -1,16 +1,52 @@
 ---
-import Test from '@components/react/test';
+import BaseLayout from '@layouts/base/index.astro';
+import ReachOutListings from '@components/astro/reach-out-listings/index.astro';
+import Navbar from '@components/astro/navbar/index.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-		<Test />
-	</body>
-</html>
+<BaseLayout
+	title="Abhushan Adhikari Joshi | Frontend Engineer"
+	description="Explore Abhushan's Frontend Engineering Portfolio - Showcasing expertise in React, Next.js, TypeScript, JavaScript and other web technologies."
+	ogImage=""
+	ogImageAlt=""
+	path="/"
+	robots="index, follow"
+>
+	<main>
+		<Navbar />
+		<article class="flex w-full md:grid md:grid-cols-[1fr_var(--primary-content-width)_1fr]">
+			<!-- About me section -->
+			<section class="mb-8 md:col-start-2 md:col-end-3">
+				<header class="mb-8">
+					<h1 class="text-3xl font-semibold md:text-4xl">hey, I'm abhushan 👋</h1>
+					<em class="text-gray-11 text-sm italic">आभूषण - Derived from Devanagari</em>
+				</header>
+
+				<p class="mb-6">
+					I'm a <strong class="text-gray-12 font-medium">Frontend Engineer</strong> with a passion for crafting web
+					products that make a difference. My journey into the world of web development began as a self-taught
+					enthusiast, and I've been hooked ever since.
+				</p>
+
+				<p class="mb-6">
+					Over the past 3 years, I've also had the remarkable opportunity to serve as a
+					<strong class="text-gray-12 font-medium">Founding Frontend Engineer</strong> at two startups. These roles
+					allowed me to be a part of something truly transformative, as I worked alongside visionary founders to turn
+					their ideas into digital realities. These experiences have shaped me into a better developer and a more
+					responsible professional.
+				</p>
+
+				<p class="mb-6">
+					Consider this as my digital playground where I will share what I'm learning about, insights from shipping
+					great products, becoming a better developer and growing a career in tech.
+				</p>
+
+				<p class="mb-10">
+					If you're looking to collaborate, learn, or share your insights, feel free to connect with me. Let's explore
+					the ever-evolving world of web development together.
+				</p>
+				<ReachOutListings />
+			</section>
+		</article>
+	</main>
+</BaseLayout>

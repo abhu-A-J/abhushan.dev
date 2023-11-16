@@ -1,0 +1,186 @@
+---
+import Footer from '@components/astro/footer/index.astro';
+
+type Props = {
+	title: string;
+	description: string;
+	ogImage: string;
+	ogImageAlt: string;
+	robots?: 'index, follow' | 'noindex,follow' | 'noindex, nofollow';
+	path: `/${string}` | '/';
+};
+
+const site = Astro.site || new URL('https://abhushan.dev');
+const { title, description, robots = 'index,follow', ogImage, ogImageAlt, path } = Astro.props;
+const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<link rel="icon" href="/favicon.ico" />
+
+		<meta property="og:site_name" content="abhushan.dev" />
+		<meta name="application-name" content="abhushan.dev" />
+
+		<!-- Site Essentials -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content={robots} />
+		<link rel="canonical" href={websiteUrl} />
+
+		<!-- Additional meta -->
+		<meta name="author" content="Abhushan Adhikari Joshi" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Open Graphs -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={websiteUrl} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:secure_url" content={ogImage} />
+		<meta property="og:image:alt" content={ogImageAlt} />
+
+		<!-- Twitter Specifies -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@abhushanAJ" />
+		<meta name="twitter:creator" content="@abhushanAJ" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={ogImage} />
+	</head>
+	<body
+		class="min-h-full w-full bg-gray-1 pb-[var(--body-space-bottom)] pl-[var(--body-space-left)] pr-[var(--body-space-right)] antialiased"
+	>
+		<div data-name="blur-segment" aria-hidden="true" class="pointer-events-none select-none"></div>
+		<slot>
+			<p>This is fallback content for slots, please pass something as children into the layout</p>
+		</slot>
+
+		<Footer />
+	</body>
+
+	<style is:global>
+		:root {
+			/* Layout Essentials */
+			--body-space-left: max(20px, env(safe-area-inset-left));
+			--body-space-right: max(20px, env(safe-area-inset-right));
+			--body-space-bottom: env(safe-area-inset-bottom);
+			--page-top: 64px;
+			--page-height: 100vh;
+			--primary-content-width: 672px;
+			--blur-segment-height: 60px;
+			--footer-height: 52px;
+
+			/* Scrollbar overrides */
+			--scrollbar-size: 16px;
+			--scrollbar-color: var(--colors-gray-7);
+
+			/* Colors */
+			--colors-gray-1: #fcfcfc;
+			--colors-gray-2: #f9f9f9;
+			--colors-gray-3: #f0f0f0;
+			--colors-gray-4: #e8e8e8;
+			--colors-gray-5: #e0e0e0;
+			--colors-gray-6: #d9d9d9;
+			--colors-gray-7: #cecece;
+			--colors-gray-8: #bbbbbb;
+			--colors-gray-9: #8d8d8d;
+			--colors-gray-10: #838383;
+			--colors-gray-11: #646464;
+			--colors-gray-12: #202020;
+		}
+
+		main {
+			max-width: var(--page-width, 1230px);
+			margin: 0 auto;
+			min-height: calc(var(--page-height) - var(--footer-height) - var(--blur-segment-height));
+		}
+
+		[data-name='text-lc'] {
+			color: var(--colors-gray-11);
+		}
+
+		[data-name='text-hc'] {
+			color: var(--colors-gray-12);
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5 {
+			color: var(--colors-gray-12);
+		}
+
+		p,
+		span,
+		small,
+		ul,
+		li,
+		caption {
+			color: var(--colors-gray-11);
+		}
+
+		div[data-name='blur-segment'] {
+			width: calc(100% + var(--body-space-left) + var(--body-space-right));
+			margin-left: calc(-1 * var(--body-space-left));
+			--gradient-blur: linear-gradient(to bottom, var(--colors-gray-1), transparent);
+			mask-image: var(--gradient-blur);
+			background-image: var(--gradient-blur);
+			opacity: 0.95;
+			position: sticky;
+			top: 0;
+			z-index: 1;
+			height: var(--blur-segment-height);
+			backdrop-filter: blur(12px);
+		}
+
+		* {
+			scrollbar-width: thin;
+			scrollbar-color: var(--scrollbar-color) transparent;
+		}
+
+		/* width */
+		::-webkit-scrollbar {
+			width: var(--scrollbar-size);
+			height: var(--scrollbar-size);
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background: var(--scrollbar-color);
+			border-radius: var(--scrollbar-size);
+			border: 5px solid transparent;
+			background-clip: padding-box;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			--scrollbar-color: var(--colors-gray-8);
+		}
+
+		/* Handle on active */
+		::-webkit-scrollbar-thumb:active {
+			--scrollbar-color: var(--colors-gray-9);
+		}
+
+		/* Hide the rest */
+		::-webkit-scrollbar-button,
+		::-webkit-scrollbar-corner,
+		::-webkit-resizer {
+			display: none;
+		}
+	</style>
+</html>
