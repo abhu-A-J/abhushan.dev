@@ -74,9 +74,11 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 			--body-space-bottom: env(safe-area-inset-bottom);
 			--page-top: 64px;
 			--page-height: 100vh;
+			--page-width: 1230px;
 			--primary-content-width: 672px;
 			--blur-segment-height: 60px;
 			--footer-height: 52px;
+			--navbar-height: 30px;
 
 			/* Scrollbar overrides */
 			--scrollbar-size: 16px;
@@ -98,9 +100,12 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		}
 
 		main {
-			max-width: var(--page-width, 1230px);
+			max-width: var(--page-width);
 			margin: 0 auto;
-			min-height: calc(var(--page-height) - var(--footer-height) - var(--blur-segment-height));
+			margin-top: var(--page-top, 0);
+			min-height: calc(
+				var(--page-height) - var(--footer-height) - var(--blur-segment-height) - var(--navbar-height) - var(--page-top)
+			);
 		}
 
 		[data-name='text-lc'] {
@@ -181,6 +186,11 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		::-webkit-scrollbar-corner,
 		::-webkit-resizer {
 			display: none;
+		}
+
+		::selection {
+			background-color: var(--colors-gray-4);
+			color: var(--colors-gray-12);
 		}
 	</style>
 </html>
