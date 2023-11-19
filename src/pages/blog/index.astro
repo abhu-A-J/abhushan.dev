@@ -1,0 +1,102 @@
+---
+import BaseLayout from '@layouts/base/index.astro';
+import Navbar from '@components/astro/navbar/index.astro';
+import BlogListing from '@components/react/blog/blog-listing';
+import ReachOutListings from '@components/astro/reach-out-listings/index.astro';
+---
+
+<BaseLayout
+	title="Abhushan's Blog | Exploring Frontend Engineering and Web Development Insights "
+	description="Explore Abhushan's Blog - Showcasing expertise in React, Next.js, TypeScript, JavaScript and other web technologies."
+	ogImage=""
+	ogImageAlt=""
+	path="/blog"
+>
+	<Navbar />
+	<main class="flex w-full md:grid md:grid-cols-[1fr_var(--primary-content-width)_1fr]">
+		<article class="mb-8 md:col-start-2 md:col-end-3">
+			<header>
+				<h1 class="mb-8 text-3xl font-semibold">blog</h1>
+
+				<p class="mb-6">
+					Welcome to my digital space where I share insights, tips, and discoveries in the dynamic realm of frontend
+					engineering and web development.
+				</p>
+
+				<p class="mb-6">
+					This blog is not just a space for code; it's a platform where I document my learning adventures, share my
+					thoughts on cutting-edge technologies, and sprinkle in some valuable tips and tricks I've picked up along the
+					way.
+				</p>
+			</header>
+
+			<section class="my-12">
+				<h2 class="mb-6 text-2xl font-semibold">latest reads</h2>
+				<BlogListing
+					listings={[
+						{
+							title: 'Understanding Event Delegation',
+							publishedDate: new Date(),
+							slug: 'blog/understanding-event-delegation',
+							seriesLength: 10
+						},
+						{
+							title: 'Understanding Event Bubbling and Propagation',
+							publishedDate: new Date(),
+							slug: 'blog/understanding-event-bubbling-and-propagation'
+						},
+						{
+							title: 'Headless Wordpress as a CMS',
+							publishedDate: new Date(),
+							slug: 'blog/headless-wordpress-as-cms',
+							seriesLength: 10
+						}
+					]}
+				/>
+			</section>
+
+			<section class="my-12">
+				<h2 class="mb-6 text-2xl font-semibold">latest collections</h2>
+				<BlogListing
+					listings={[
+						{
+							title: 'Javascript for Frontend Interviews',
+							publishedDate: new Date(),
+							slug: 'blog/understanding-event-delegation',
+							seriesLength: 50
+						},
+						{
+							title: 'CSS for Frontend Interviews',
+							publishedDate: new Date(),
+							slug: 'blog/understanding-event-bubbling-and-propagation',
+							seriesLength: 10
+						},
+						{
+							title: 'DOM for Frontend Interviews',
+							publishedDate: new Date(),
+							slug: 'blog/headless-wordpress-as-cms',
+							seriesLength: 10
+						},
+						{
+							title: 'React for Frontend Interviews',
+							publishedDate: new Date(),
+							slug: 'blog/headless-wordpress-as-cms',
+							seriesLength: 20
+						}
+					]}
+				/>
+			</section>
+
+			<section>
+				<h2 class="mb-6 text-2xl font-semibold">reach out</h2>
+				<ReachOutListings />
+			</section>
+		</article>
+	</main>
+</BaseLayout>
+
+<style>
+	:root {
+		--page-top: 40px;
+	}
+</style>
