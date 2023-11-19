@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '@layouts/base/index.astro';
+import Navbar from '@components/astro/navbar/index.astro';
+import { getPathFromSlug } from '@utils/index';
+
+export const getStaticPaths = (async () => {
+	const allBlogs = await getCollection('blog');
+	return allBlogs.map((blog) => ({ params: { slug: blog.slug }, props: { blog } }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+
+const { blog } = Astro.props;
+
+const {
+	data: { seoMetaData, title },
+	render
+} = blog;
+
+const path = getPathFromSlug(slug);
+
+const { Content } = await render();
+---
+
+<BaseLayout {...seoMetaData} path={path}>
+	<Navbar />
+	<main class="flex w-full md:grid md:grid-cols-[1fr_var(--primary-content-width)_1fr]">
+		<article class="mb-8 md:col-start-2 md:col-end-3">
+			<h1>{title}</h1>
+
+			<Content />
+		</article>
+	</main>
+</BaseLayout>

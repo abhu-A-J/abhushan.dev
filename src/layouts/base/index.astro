@@ -1,17 +1,15 @@
 ---
 import Footer from '@components/astro/footer/index.astro';
+import type { SeoMetaData } from '@schema/seo-meta';
+import type { ReactNode } from 'react';
 
 type Props = {
-	title: string;
-	description: string;
-	ogImage: string;
-	ogImageAlt: string;
-	robots?: 'index, follow' | 'noindex,follow' | 'noindex, nofollow';
 	path: `/${string}` | '/';
-};
+	children: ReactNode;
+} & SeoMetaData;
 
 const site = Astro.site || new URL('https://abhushan.dev');
-const { title, description, robots = 'index,follow', ogImage, ogImageAlt, path } = Astro.props;
+const { title, description, robots = 'index, follow', ogImage, ogImageAlt, path } = Astro.props;
 const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 ---
 
