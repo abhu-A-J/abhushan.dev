@@ -123,8 +123,6 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		}
 
 		p,
-		span,
-		small,
 		ul,
 		li,
 		caption {
@@ -143,6 +141,11 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 			z-index: 1;
 			height: var(--blur-segment-height);
 			backdrop-filter: blur(12px);
+		}
+
+		span,
+		small {
+			color: inherit;
 		}
 
 		* {
