@@ -4,6 +4,9 @@ import { getCollection } from 'astro:content';
 
 import BaseLayout from '@layouts/base/index.astro';
 import Navbar from '@components/astro/navbar/index.astro';
+
+import BlogHeader from '@components/react/blog/blog-header';
+
 import { getPathFromSlug } from '@utils/index';
 
 export const getStaticPaths = (async () => {
@@ -16,7 +19,7 @@ const { slug } = Astro.params;
 const { blog } = Astro.props;
 
 const {
-	data: { seoMetaData, title },
+	data: { seoMetaData, title, publishedDate },
 	render
 } = blog;
 
@@ -29,9 +32,14 @@ const { Content } = await render();
 	<Navbar />
 	<main class="flex w-full md:grid md:grid-cols-[1fr_var(--primary-content-width)_1fr]">
 		<article class="mb-8 md:col-start-2 md:col-end-3">
-			<h1>{title}</h1>
-
+			<BlogHeader title={title} publishedDate={publishedDate} totalViews="20,233 views" />
 			<Content />
 		</article>
 	</main>
 </BaseLayout>
+
+<style>
+	:root {
+		--page-top: 40px;
+	}
+</style>
