@@ -1,0 +1,51 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, getEntryBySlug } from 'astro:content';
+
+import BaseLayout from '@layouts/base/index.astro';
+import Navbar from '@components/astro/navbar/index.astro';
+
+import BlogHeader from '@components/react/blog/blog-header';
+import BackAction from '@components/react/back-action';
+import { components } from '@components/react/blog/content-blocks';
+
+import { getPathFromSlug } from '@utils/index';
+
+export const getStaticPaths = (async () => {
+	const allBlogs = await getCollection('blog');
+	return allBlogs.map((blog) => ({ params: { slug: blog.slug } }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+
+const blog = await getEntryBySlug('blog', slug);
+
+const {
+	data: { seoMetaData, title, publishedDate },
+	render
+} = blog;
+
+const path = getPathFromSlug(slug);
+
+const { Content } = await render();
+---
+
+<BaseLayout {...seoMetaData} path={path}>
+	<Navbar />
+	<main class="flex w-full md:grid md:grid-cols-[1fr_var(--primary-content-width)_1fr]">
+		<article class="mb-8 md:col-start-2 md:col-end-3">
+			<!-- Back action -->
+			<BackAction href="/blog" title="Vist the blogs page">back to blog</BackAction>
+			<!-- Blog Header -->
+			<BlogHeader title={title} publishedDate={publishedDate} totalViews="20,233 views" />
+			<!--  Blog content -->
+			<Content components={components} />
+		</article>
+	</main>
+</BaseLayout>
+
+<style>
+	:root {
+		--page-top: 40px;
+	}
+</style>

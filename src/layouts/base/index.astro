@@ -1,17 +1,15 @@
 ---
 import Footer from '@components/astro/footer/index.astro';
+import type { SeoMetaData } from '@schema/seo-meta';
+import type { ReactNode } from 'react';
 
 type Props = {
-	title: string;
-	description: string;
-	ogImage: string;
-	ogImageAlt: string;
-	robots?: 'index, follow' | 'noindex,follow' | 'noindex, nofollow';
 	path: `/${string}` | '/';
-};
+	children: ReactNode;
+} & SeoMetaData;
 
 const site = Astro.site || new URL('https://abhushan.dev');
-const { title, description, robots = 'index,follow', ogImage, ogImageAlt, path } = Astro.props;
+const { title, description, robots = 'index, follow', ogImage, ogImageAlt, path } = Astro.props;
 const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 ---
 
@@ -98,6 +96,9 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 			--colors-gray-11: #646464;
 			--colors-gray-12: #202020;
 		}
+		html {
+			scroll-behavior: smooth;
+		}
 
 		main {
 			max-width: var(--page-width);
@@ -125,8 +126,6 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 		}
 
 		p,
-		span,
-		small,
 		ul,
 		li,
 		caption {
@@ -145,6 +144,11 @@ const websiteUrl = path === '/' ? site.origin : `${site.origin}${path}`;
 			z-index: 1;
 			height: var(--blur-segment-height);
 			backdrop-filter: blur(12px);
+		}
+
+		span,
+		small {
+			color: inherit;
 		}
 
 		* {

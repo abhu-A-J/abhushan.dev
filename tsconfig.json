@@ -2,7 +2,7 @@
 	"extends": "astro/tsconfigs/strictest",
 	"compilerOptions": {
 		"verbatimModuleSyntax": true,
-		"baseUrl": "/Users/abhushanalippo/Desktop/abhushan.dev",
+		"baseUrl": ".",
 		"paths": {
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],
